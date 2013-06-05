@@ -15,5 +15,5 @@ EOT
 $text =
 "*mscvvowyflrtoPltotzvrtbkaojiieqssxhjSrgzraojlayvrogzzivfvsHrghsrmrpvenvoengprupe"
 
-p $grid
-p $text
+# p $grid
+# p $text
