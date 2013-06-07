@@ -9,12 +9,22 @@ class NumberPlace
     attr_accessor :grid
 
     def solve
+      (1..9).each do |x|
+        (1..9).each do |y|
+          cell = @grid.cell(x, y).to_i
+          if cell.zero?
+            candidates = list_candidates(x, y)
+            c = candidates.to_a.first
+            @grid.set_cell(x, y, c)
+          end
+        end
+      end
+      @grid
     end
 
     ALL_NUMBERS = Set.new(1..9)
 
     def list_candidates(x, y)
-      # ALL_NUMBERS - _list_candidates(x, 1..9) - _list_candidates(1..9, y)
       ALL_NUMBERS - list_candidates_column(x) - list_candidates_row(y) - list_candidates_box(x, y)
     end
 
