@@ -18,14 +18,16 @@ class HoursesTour
       false
     end
 
+    def movable_positions(x, y)
+      list_candidates_diagonal(x, y) + list_candidates_around(x, y)
+    end
+
     def list_candidates_around(x, y)
       candidates = []
       candidates_x = []
       candidates_x << x
       candidates_y = []
       candidates_y << y
-
-      candidates << [x, y]
 
       if x > 1
         candidates_x << x-1
@@ -49,39 +51,45 @@ class HoursesTour
         end
       end
 
-      candidates.uniq.sort
+      candidates.delete([x, y])
+      candidates
     end
 
     def list_candidates_diagonal(x, y)
       candidates = []
-
-      candidates << [x, y]
+      d1 = []; d2 = []; d3 = []; d4 = []
 
       _x = x; _y = y
       while (_x > 1 && _y > 1)
         _x, _y = _x-1, _y-1
-        candidates << [_x, _y]
+        d1 << [_x, _y]
       end
-
-      _x = x; _y = y
-      while (_x > 1 && _y < 9)
-        _x, _y = _x-1, _y+1
-        candidates << [_x, _y]
-      end
-
-      _x = x; _y = y
-      while (_x < 9 && _y > 1)
-        _x, _y = _x+1, _y-1
-        candidates << [_x, _y]
-      end
+      d1.reverse!
+      candidates += d1
 
       _x = x; _y = y
       while (_x < 9 && _y < 9)
         _x, _y = _x+1, _y+1
-        candidates << [_x, _y]
+        d2 << [_x, _y]
       end
+      candidates += d2
 
-      candidates.uniq.sort
+      _x = x; _y = y
+      while (_x < 9 && _y > 1)
+        _x, _y = _x+1, _y-1
+        d3 << [_x, _y]
+      end
+      d3.reverse!
+      candidates += d3
+
+      _x = x; _y = y
+      while (_x > 1 && _y < 9)
+        _x, _y = _x-1, _y+1
+        d4 << [_x, _y]
+      end
+      candidates += d4
+
+      candidates.uniq
     end
   end
 end
