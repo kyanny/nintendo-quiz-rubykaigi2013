@@ -6,16 +6,12 @@ class HoursesTour
       @grid = grid
     end
 
+    def solve(x, y)
+      
+    end
+
     def can_move?(x, y, j, k)
-      if list_candidates_around(x, y).include?([j, k])
-        return true
-      end
-
-      if list_candidates_diagonal(x, y).include?([j, k])
-        return true
-      end
-
-      false
+      movable_positions(x, y).include?([j, k])
     end
 
     def movable_positions(x, y)
