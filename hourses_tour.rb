@@ -12,6 +12,7 @@ class HoursesTour
       end
 
       if list_candidates_diagonal(x, y).include?([j, k])
+        return true
       end
 
       false
@@ -48,11 +49,39 @@ class HoursesTour
         end
       end
 
-      candidates.uniq!.sort!
+      candidates.uniq.sort
     end
 
     def list_candidates_diagonal(x, y)
-      []
+      candidates = []
+
+      candidates << [x, y]
+
+      _x = x; _y = y
+      while (_x > 1 && _y > 1)
+        _x, _y = _x-1, _y-1
+        candidates << [_x, _y]
+      end
+
+      _x = x; _y = y
+      while (_x > 1 && _y < 9)
+        _x, _y = _x-1, _y+1
+        candidates << [_x, _y]
+      end
+
+      _x = x; _y = y
+      while (_x < 9 && _y > 1)
+        _x, _y = _x+1, _y-1
+        candidates << [_x, _y]
+      end
+
+      _x = x; _y = y
+      while (_x < 9 && _y < 9)
+        _x, _y = _x+1, _y+1
+        candidates << [_x, _y]
+      end
+
+      candidates.uniq.sort
     end
   end
 end
