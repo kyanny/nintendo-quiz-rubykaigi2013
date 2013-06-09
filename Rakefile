@@ -1,6 +1,6 @@
 desc 'test'
 task :test do
-  sh 'ruby test_number_place.rb --name test_solve_1_easy'
+  sh 'ruby test_hourses_tour.rb'
 end
 
 task :default => :test
