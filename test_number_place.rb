@@ -99,7 +99,6 @@ GRID
 GRID
   end
 
-=begin
   def test_solve_3_hard
     solver = NumberPlace::Solver.new(<<GRID.delete("\n"))
 900500800
@@ -149,6 +148,5 @@ GRID
 348975612
 GRID
   end
-=end
 
 end
