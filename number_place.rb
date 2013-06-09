@@ -9,13 +9,50 @@ class NumberPlace
     attr_accessor :grid
 
     def solve
+      solve_simple
+      # possible_candidates = nil
+      # saved_grid = ""
+      # saved_x = 0; saved_y = 0
+      # (1..9).each do |x|
+      #   p saved_x
+      #   next if saved_x && saved_x >= x
+      #   (1..9).each do |y|
+      #     next if saved_y && saved_y >= y
+      #     cell = @grid.cell(x, y).to_i
+      #     if cell.zero?
+      #       candidates = list_candidates(x, y)
+      #       if candidates.size == 0
+
+      #       elsif candidates.size == 1
+      #         c = candidates.to_a.first
+      #         @grid.set_cell(x, y, c)
+      #       else
+      #         saved_grid = @grid.dup
+      #         saved_x = x
+      #         saved_y = y
+      #         c = candidates.to_a.first
+      #         possible_candidates = candidates.delete(c)
+      #         @grid.set_cell(x, y, c)
+      #       end
+      #     end
+      #   end
+      # end
+      # @grid
+      @grid
+    end
+
+    def solve_simple
       (1..9).each do |x|
         (1..9).each do |y|
           cell = @grid.cell(x, y).to_i
           if cell.zero?
             candidates = list_candidates(x, y)
-            c = candidates.to_a.first
-            @grid.set_cell(x, y, c)
+            if candidates.size == 1
+              c = candidates.to_a.first
+              @grid.set_cell(x, y, c)
+            else
+              next
+            end
           end
         end
       end
