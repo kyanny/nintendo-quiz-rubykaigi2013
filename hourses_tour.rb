@@ -11,7 +11,7 @@ class HoursesTour
 
     def solve(x, y)
       solve_with_backtracking(x, y, 1)
-      [@solutions[0]]
+      @solutions.uniq
     end
 
     def solve_with_backtracking(x, y, k)
