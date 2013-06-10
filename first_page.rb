@@ -38,14 +38,14 @@ class NintendoQuiz
   end
 end
 
-class TestNintendoQuiz < Test::Unit::TestCase
-  (1..26).each do |n|               # 26 == alphabets.size
-    define_method "test_nintendo_quiz_#{n}" do
-      nintendo_quiz = NintendoQuiz.new(n)
-      assert !nintendo_quiz.run.match(/^http:\/\//)
-    end
-  end
-end
+# class TestNintendoQuiz < Test::Unit::TestCase
+#   (1..26).each do |n|               # 26 == alphabets.size
+#     define_method "test_nintendo_quiz_#{n}" do
+#       nintendo_quiz = NintendoQuiz.new(n)
+#       assert !nintendo_quiz.run.match(/^http:\/\//)
+#     end
+#   end
+# end
 
 # $ ruby app.rb
 # Loaded suite app
