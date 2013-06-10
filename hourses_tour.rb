@@ -1,13 +1,31 @@
 require './utility'
+require 'awesome_print'
 
 class HoursesTour
   class Solver
     def initialize(grid)
       @grid = grid
+      @path = []
+      @solutions = []
     end
 
     def solve(x, y)
-      
+      solve_with_backtracking(x, y, 1)
+      [@solutions[0]]
+    end
+
+    def solve_with_backtracking(x, y, k)
+      @path << [x, y]
+      if k == 9
+        @solutions << @path.clone if can_move?(x, y, @path[0][0], @path[0][1])
+      else
+        movable_positions(x, y).each do |nx, ny|
+          if @grid.cell(nx, ny).to_i == k+1
+            solve_with_backtracking(nx, ny, k+1)
+          end
+        end
+      end
+      @path.pop
     end
 
     def can_move?(x, y, j, k)
